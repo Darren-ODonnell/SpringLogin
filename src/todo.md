@@ -33,6 +33,8 @@ SQLx Sql scripts to incorporate into repositories
         Stats (Statname and count)
         Dates (Season and FixtureDate
         Players (Firstname, lastname)
+        refactoring done - original clases and supporting code left in for now!
+
     R3: 
     R4: 
     R5: 
@@ -57,17 +59,17 @@ SQLx Sql scripts to incorporate into repositories
     SQL6:
     /stats_view/countAllStatAllPlayersOneSeason
     //List of Counts per game-> List for season graph
-    SELECT stat_name, fixture_date, count(*) FROM teamstats.stats_view
+    SELECT stat_name, firstname, lastname, season, count(*) FROM teamstats.stats_view
     WHERE season = "2022"
-    GROUP BY stat_name, fixture_date
-    ORDER BY stat_name, fixture_date;
+    GROUP BY stat_name, last_name+first_name
+    ORDER BY stat_name, last_name+first_name;
 
     SQL7:
     /stats_view/countAllStatAllPlayersAllTime
     //Count per season -> list for all time graph
-    SELECT stat_name, season, count(*) FROM teamstats.stats_view
-    GROUP BY stat_name, season
-    ORDER BY stat_name, season;
+    SELECT stat_name, first_name, last_name,count(*) FROM teamstats.stats_view
+    GROUP BY stat_name, last_name+first_name,
+    ORDER BY stat_name, last_name+first_name;
 
     SQL11:
     SQL12:

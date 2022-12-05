@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,6 +41,19 @@ public class TeamsheetService {
             new MyMessageResponse(String.format("Teamsheet id: %d not found", id), MessageTypes.ERROR);
         return teamsheet.orElse(new Teamsheet());
     }
+    public List<Teamsheet> findByFixtureId( Long id){
+        Optional<List<Teamsheet>> teamsheets = Optional.ofNullable(teamsheetRepository.findByFixtureId(id));
+        if(teamsheets.isEmpty())
+            new MyMessageResponse(String.format("Fixture id: %d not found", id), MessageTypes.ERROR);
+        return teamsheets.orElse(new ArrayList<>());
+    }
+    public List<Teamsheet> findByPlayerId( Long id){
+        Optional<List<Teamsheet>> teamsheets = Optional.ofNullable(teamsheetRepository.findByPlayerId(id));
+        if(teamsheets.isEmpty())
+            new MyMessageResponse(String.format("Player id: %d not found", id), MessageTypes.ERROR);
+        return teamsheets.orElse(new ArrayList<>());
+    }
+
 
 
     // add new Teamsheet
@@ -77,6 +91,7 @@ public class TeamsheetService {
         teamsheetRepository.save(teamsheet);
         return ResponseEntity.ok(new MyMessageResponse("Teamsheet record updated", MessageTypes.INFO));
     }
+
 
 
 }

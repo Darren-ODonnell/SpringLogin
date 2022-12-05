@@ -5,6 +5,7 @@ import com.jwt.models.TeamsheetId;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +15,7 @@ public interface TeamsheetRepository extends JpaRepository<Teamsheet, TeamsheetI
     boolean existsByFixtureId(Long id);
     boolean existsById(TeamsheetId id);
 
-    Teamsheet findByFixtureId(Long id);
+    List<Teamsheet> findByFixtureId(Long id);
     Optional<Teamsheet> findById(TeamsheetId id);
     List<Teamsheet> findByPlayerId(Long id);
 

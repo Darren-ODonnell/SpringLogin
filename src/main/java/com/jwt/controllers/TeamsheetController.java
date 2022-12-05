@@ -44,6 +44,20 @@ public class TeamsheetController {
         return teamsheetService.findById(id);
     }
 
+    // return Teamsheet by id
+
+    @GetMapping(value="/findByFixtureId")
+    @PreAuthorize("hasRole('ROLE_USER')  or hasRole('ROLE_ADMIN')")
+    public @ResponseBody List<Teamsheet> findByFixtureId(@RequestParam("id") Long fixtureId){
+        return teamsheetService.findByFixtureId(fixtureId);
+    }
+    @GetMapping(value="/findByPlayerId")
+    @PreAuthorize("hasRole('ROLE_USER')  or hasRole('ROLE_ADMIN')")
+    public @ResponseBody List<Teamsheet> findByPlayerId(@RequestParam("id") Long playerId){
+        return teamsheetService.findByPlayerId(playerId);
+    }
+
+
     // add new Teamsheet
 
     @PutMapping(value="/add")
