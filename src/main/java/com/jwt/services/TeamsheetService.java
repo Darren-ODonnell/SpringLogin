@@ -2,10 +2,12 @@ package com.jwt.services;
 
 import com.jwt.enums.MessageTypes;
 import com.jwt.exceptions.MyMessageResponse;
+import com.jwt.models.Player;
 import com.jwt.models.Teamsheet;
 import com.jwt.models.TeamsheetId;
 import com.jwt.models.TeamsheetModel;
 import com.jwt.payload.response.MessageResponse;
+
 import com.jwt.repositories.TeamsheetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +15,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import java.util.Optional;
+
 
 @Service
 public class TeamsheetService {
@@ -38,7 +42,7 @@ public class TeamsheetService {
     public Teamsheet findById( TeamsheetId id){
         Optional<Teamsheet> teamsheet = teamsheetRepository.findById(id);
         if(teamsheet.isEmpty())
-            new MyMessageResponse(String.format("Teamsheet id: %d not found", id), MessageTypes.ERROR);
+            new MyMessageResponse(String.format("Teamsheet fixtureid: %d playerid: %dnot found", id.getFixtureId(), id.getPlayerId()), MessageTypes.ERROR);
         return teamsheet.orElse(new Teamsheet());
     }
     public List<Teamsheet> findByFixtureId( Long id){
@@ -54,10 +58,18 @@ public class TeamsheetService {
         return teamsheets.orElse(new ArrayList<>());
     }
 
+    public List<Player> findPlayersByFixtureId( Long id){
+        // get teamsheet by fixture id.
+        // extract and return the list of players from this list
+        List<Teamsheet> teamsheets = teamsheetRepository.findByFixtureId(id);
+        List<Player> players = new ArrayList<>();
+        for(Teamsheet ts : teamsheets)
+            players.add(ts.getPlayer());
 
+        return players;
+    }
 
     // add new Teamsheet
-
     public ResponseEntity<MessageResponse> add(TeamsheetModel teamsheetModel){
 
         if(teamsheetRepository.existsByFixtureId(teamsheetModel.getFixture().getId()))

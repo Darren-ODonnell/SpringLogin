@@ -1,5 +1,6 @@
 package com.jwt.controllers;
 
+import com.jwt.models.Player;
 import com.jwt.models.Teamsheet;
 import com.jwt.models.TeamsheetId;
 import com.jwt.models.TeamsheetModel;
@@ -20,10 +21,14 @@ import java.util.List;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping({"/teamsheet","/teamsheets",""})
 public class TeamsheetController {
+
     public final TeamsheetService teamsheetService;
 
+
+
     @Autowired
-    public TeamsheetController(TeamsheetService teamsheetService) {
+    public TeamsheetController( TeamsheetService teamsheetService) {
+
         this.teamsheetService = teamsheetService;
     }
 
@@ -51,12 +56,16 @@ public class TeamsheetController {
     public @ResponseBody List<Teamsheet> findByFixtureId(@RequestParam("id") Long fixtureId){
         return teamsheetService.findByFixtureId(fixtureId);
     }
+    @GetMapping(value="/findPlayersByFixtureId")
+    @PreAuthorize("hasRole('ROLE_USER')  or hasRole('ROLE_ADMIN')")
+    public @ResponseBody List<Player> findPlayersByFixtureId(@RequestParam("id") Long id){
+        return teamsheetService.findPlayersByFixtureId(id);
+    }
     @GetMapping(value="/findByPlayerId")
     @PreAuthorize("hasRole('ROLE_USER')  or hasRole('ROLE_ADMIN')")
     public @ResponseBody List<Teamsheet> findByPlayerId(@RequestParam("id") Long playerId){
         return teamsheetService.findByPlayerId(playerId);
     }
-
 
     // add new Teamsheet
 
