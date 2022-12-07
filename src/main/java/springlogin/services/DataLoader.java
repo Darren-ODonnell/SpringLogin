@@ -19,12 +19,12 @@ public class DataLoader {
     }
 
     private void loadXml() {
-        // parse xml into array of country and covidvariant objects
+        // parse xml into array of Country and CovidVariant objects
         // load these arrays into repositories
 
     }
     private void loadHtml() {
-        // parse html into array of country and covidvariant objects
+        // parse html into array of Country and CovidVariant objects
         // load these arrays into repositories
 
     }
