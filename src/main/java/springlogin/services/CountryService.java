@@ -17,18 +17,18 @@ import java.util.Optional;
 @Service
 public class CountryService {
 
-    CountryRepository countryRepository;
+    final CountryRepository countryRepository;
 
     @Autowired
     public CountryService(CountryRepository countryRepository) {
         this.countryRepository = countryRepository;
     }
 
-    // return all Countrys
+    // return all Countries
 
     public List<Country> list(){
         List<Country> countries = countryRepository.findAll();
-        if(countries.isEmpty()) new MyMessageResponse("Error: No Countrys listed", MessageTypes.WARN);
+        if(countries.isEmpty()) new MyMessageResponse("Error: No Countries listed", MessageTypes.WARN);
         return countries;
     }
 

@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DataLoader {
-    CovidVariantRepository covidVariantRepository;
-    CountryRepository countryRepository;
+    final CovidVariantRepository covidVariantRepository;
+    final CountryRepository countryRepository;
 
     @Autowired
     public DataLoader(CovidVariantRepository covidVariantRepository,CountryRepository countryRepository) {

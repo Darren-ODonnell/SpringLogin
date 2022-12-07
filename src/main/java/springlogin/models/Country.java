@@ -43,9 +43,7 @@ public class Country {
         this.weekNumber = weekNumber;
     }
 
-    public Float getDailyOccupancy() {
-        return dailyOccupancy;
-    }
+    public Float getDailyOccupancy() {        return dailyOccupancy;    }
 
     public void setDailyOccupancy(Float dailyOccupancy) {
         this.dailyOccupancy = dailyOccupancy;

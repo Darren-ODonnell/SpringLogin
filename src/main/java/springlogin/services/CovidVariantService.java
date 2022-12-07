@@ -17,7 +17,7 @@ import java.util.Optional;
 @Service
 public class CovidVariantService {
 
-    CovidVariantRepository covidVariantRepository;
+    final CovidVariantRepository covidVariantRepository;
 
     @Autowired
     public CovidVariantService(CovidVariantRepository covidVariantRepository) {

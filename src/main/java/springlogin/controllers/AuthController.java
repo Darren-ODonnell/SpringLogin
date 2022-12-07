@@ -31,9 +31,9 @@ public class AuthController {
 
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
-    UserRepository userRepository;
-    AuthenticationManager authenticationManager;
-    PasswordEncoder encoder;
+    final UserRepository userRepository;
+    final AuthenticationManager authenticationManager;
+    final PasswordEncoder encoder;
 
     @Autowired
     public AuthController(AuthenticationManager authenticationManager, UserRepository userRepository) {

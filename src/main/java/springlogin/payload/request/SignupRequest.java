@@ -36,11 +36,4 @@ public class SignupRequest {
 
     public void setPasswordConfirm(String passwordConfirm) {        this.passwordConfirm = passwordConfirm;    }
 
-//    public Set<String> getRole() {
-//        return this.role;
-//    }
-//
-//    public void setRole(Set<String> role) {
-//        this.role = role;
-//    }
 }
